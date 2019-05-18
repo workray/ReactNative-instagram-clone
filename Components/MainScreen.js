@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, Platform, View, Text } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { Icon } from 'native-base';
-import { createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator, createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
 
 import HomeTab from './AppTabNavigator/HomeTab';
 import SearchTab from './AppTabNavigator/SearchTab';
@@ -10,29 +10,29 @@ import LikesTab from './AppTabNavigator/LikesTab';
 import ProfileTab from './AppTabNavigator/ProfileTab';
 
 const AppTabNavigator = createMaterialTopTabNavigator({
-    HomeTab: { screen: HomeTab },
-    SearchTab: { screen: SearchTab },
-    AddMediaTab: { screen: AddMediaTab },
-    LikesTab: { screen: LikesTab },
-    ProfileTab: { screen: ProfileTab }
-}, {
+    HomeTab:{ screen: HomeTab },
+    Search:{ screen: SearchTab },
+    AddMedia:{ screen: AddMediaTab },
+    Likes:{ screen: LikesTab },
+    Profile:{ screen: ProfileTab }
+ }, {
     animationEnabled: true,
     swipeEnabled: true,
     tabBarPosition: "bottom",
     tabBarOptions: {
-        style: {
-            ...Platform.select({
-                iso: {
-                    backgroundColor: 'white',
-                }
-            })
-        },
-        iconStyle: { height: 100 },
-        activeTintColor: '#000',
-        inactiveTintColor: '#d1c3c3',
-        upperCaseLabel: false,
-        showLabel: false,
-        showIcon: true,
+      style: {
+        ...Platform.select({
+          ios:{
+            backgroundColor:'white',
+          }
+        })
+      },
+      iconStyle: { height: 100 },
+      activeTintColor: '#000',
+      inactiveTintColor: '#d1cece',
+      upperCaseLabel: false,
+      showLabel: false,
+      showIcon: true,
     }
 });
 
