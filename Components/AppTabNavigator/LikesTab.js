@@ -12,7 +12,7 @@ export default class LikesTab extends Component {
   render() {
     return (
       <View style={style.container}>
-        <Text>LikesTab</Text>
+        <Text>Hello World</Text>
       </View>
     );
   }

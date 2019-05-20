@@ -27,13 +27,16 @@ const AppTabNavigator = createMaterialTopTabNavigator(
     tabBarPosition: "bottom",
     tabBarOptions: {
       style: {
+        backgroundColor: "white"
+      },
+      iconStyle: {
         ...Platform.select({
           ios: {
-            backgroundColor: "white"
+            height: 35,
+            marginBottom: 20
           }
         })
       },
-      iconStyle: { height: 40 },
       activeTintColor: "#000",
       inactiveTintColor: "#d1cece",
       upperCaseLabel: false,
@@ -42,15 +45,11 @@ const AppTabNavigator = createMaterialTopTabNavigator(
     }
   }
 );
-
 const AppTabContainer = createAppContainer(AppTabNavigator);
 
-export default class App extends Component {
-  // navigationOptions
+export default class MainScreen extends Component {
   static navigationOptions = {
-    headerLeft: <Icon name="ios-camera" style={{ paddingLeft: 10 }} />,
-    title: "Instagram",
-    headerRight: <Icon name="ios-send" style={{ paddingRight: 10 }} />
+    header: null
   };
 
   render() {

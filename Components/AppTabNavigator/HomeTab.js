@@ -1,6 +1,16 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import { Container, Content, Icon, Thumbnail } from "native-base";
+
+import {
+  Container,
+  Content,
+  Icon,
+  Thumbnail,
+  Header,
+  Left,
+  Right,
+  Body
+} from "native-base";
 import CardComponent from "../CardComponent";
 
 export default class HomeTab extends Component {
@@ -21,7 +31,6 @@ export default class HomeTab extends Component {
         feeds
       });
     });
-
     this.fetchFollowing().then(followings => {
       this.setState({
         followings
@@ -52,7 +61,14 @@ export default class HomeTab extends Component {
       params: [
         "database_api",
         "get_discussions_by_created",
-        [{ tag: "en", limit: 20 }]
+        [
+          {
+            tag: "en",
+            limit: 10
+            // start_author:"",
+            // start_permlink:""
+          }
+        ]
       ]
     };
     return fetch("https://api.steemit.com", {
@@ -66,6 +82,17 @@ export default class HomeTab extends Component {
   render() {
     return (
       <Container style={style.container}>
+        <Header>
+          <Left>
+            <Icon name="ios-camera" style={{ paddingLeft: 10 }} />
+          </Left>
+          <Body>
+            <Text>Instagram</Text>
+          </Body>
+          <Right>
+            <Icon name="ios-send" style={{ paddingRight: 10 }} />
+          </Right>
+        </Header>
         <Content>
           <View style={{ height: 100 }}>
             <View
@@ -84,7 +111,6 @@ export default class HomeTab extends Component {
                 <Text style={{ fontWeight: "bold" }}> Watch All</Text>
               </View>
             </View>
-
             <View style={{ flex: 3 }}>
               <ScrollView
                 horizontal={true}
@@ -97,21 +123,22 @@ export default class HomeTab extends Component {
               >
                 {this.state.followings.map(following => (
                   <Thumbnail
+                    key={following}
                     style={{
                       marginHorizontal: 5,
                       borderColor: "pink",
                       borderWidth: 2
                     }}
                     source={{
-                      uri: "https://steemitimages.com/u/${following}/avatar"
+                      uri: `https://steemitimages.com/u/${following}/avatar`
                     }}
                   />
                 ))}
               </ScrollView>
             </View>
           </View>
-          {this.state.feeds.map((feed, index) => (
-            <CardComponent key={"feed" + index} data={feed} />
+          {this.state.feeds.map(feed => (
+            <CardComponent data={feed} key={feed.url} />
           ))}
         </Content>
       </Container>
